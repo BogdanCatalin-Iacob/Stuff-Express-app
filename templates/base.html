@@ -51,9 +51,22 @@
 <body>
     <header class="container-fluid fixed-top"></header>
 
+    <!-- Display messages -->
     {% if messages %}
         <div class="message-container"></div>
     {% endif %}
+
+    <!-- Extra content in the header but under it -->
+    {% block page_header %}
+    {% endblock %}
+
+    <!-- Main content block -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Block for js -->
+    {% block postloadjs %}
+    {% endblock %}
 
 </body>
 
