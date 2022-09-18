@@ -1,7 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
-    <h1 class="display-4 text-success">It works</h1>
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
 {% endblock %}
 
+{% block content %}
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col">
+                <h1 class="display-4 logo-font">
+                    Deals your pockets will thank you!
+                </h1>
+                <div>
+                    <h4>
+                        <a href="http://" class="shop-now-button btn btn-lg rounded-lg">Shop now</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
