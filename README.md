@@ -64,6 +64,8 @@ The live website can be found [here]()<br>
         
 
     -   #### Typography
+        - Font used for headings, buttons: 'Inter' with 'Arial' as fallback font in case 'Inter' is not loaded
+        - Font used for all other texts: 'Roboto' with 'Helvetica' as fallback in case 'Roboto' is not loaded
        
         
     -   #### Wireframes
