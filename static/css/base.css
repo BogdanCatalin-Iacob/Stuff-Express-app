@@ -6,4 +6,89 @@ body {
     background: url('/media/home-image-cart.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
+    font-family: Roboto, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.btn {
+    font-family: Inter, Helvetica, sans-serif;
+}
+
+/* from codeinstitute (from Bulma) */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+
+/* ******************************************************************* */
+/* *                            Header                               * */
+/* ******************************************************************* */
+.logo-font{
+    text-transform: capitalize;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+
+/* ******************************************************************* */
+/* *                            Button                               * */
+/* ******************************************************************* */
+
+.shop-now-button {
+    color: #000;
+    min-width: 300px;
+}
+
+.btn {
+    border: #000;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background: #333;
+    color: #FFF;
+}
+
+.border-black {
+    border: 1px solid #000 !important;
+}
+
+
+/* ******************************************************************* */
+/* *                         Media Queries                           * */
+/* ******************************************************************* */
+
+/* from codeinstitute */
+/* Larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* fixed top navbar only on medium and up screens */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only{
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
 }
