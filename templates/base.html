@@ -21,6 +21,14 @@
         <!-- Bootstrap Css -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+        <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     <!-- block for extra css -->
@@ -29,6 +37,8 @@
 
     <!-- JS Block -->
     {% block corejs %}
+        <!-- Font Awsome -->
+        <script src="https://kit.fontawesome.com/bf887c87da.js" crossorigin="anonymous"></script>
         <!-- Bootstrap js -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -53,7 +63,7 @@
     <!-- Header -->
     <header class="container-fluid fixed-top">
         <!-- Logo and link to home page -->
-        <div class="row">
+        <div class="row bg-white pt-lg-2 d-none d-lg-flex" id="topnav">
             <div class="col-12 col-lg-4 my-auto text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="logo-font text-black my-0">Stuff Express</h2>
