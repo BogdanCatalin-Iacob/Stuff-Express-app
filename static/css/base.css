@@ -32,6 +32,12 @@ h6,
     color: #000 !important;
 }
 
+/* gradient color created on https://cssgradient.io/*/
+.bg-blue-gradient {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
 
 /* ******************************************************************* */
 /* *                            Header                               * */

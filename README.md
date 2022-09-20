@@ -98,7 +98,7 @@ The live website can be found [here]()<br>
 	* This project uses HTML as the main language used to complete the structure of the Website.
 * CSS
 	* This project uses custom written CSS to style the Website.
-* Flask
+* Django
     * This is used as the main connection between frontend and backend
 * Python
     * This is used as the backend of the project
@@ -134,6 +134,8 @@ The live website can be found [here]()<br>
     * This was used to create wireframes
 * [Wave Accessibility tool](https://wave.webaim.org/)
     * this was used to test the website for accessibility for impaired persons
+* [CSSGradient](https://cssgradient.io/)
+    * used to create the gradient color for delivery banner
 ***
 
 ## Testing
