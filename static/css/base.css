@@ -93,6 +93,8 @@ h6,
         z-index: 1000;
     }
 
+    /* from codeinstitute */
+    /* push the body down */
     .header-container {
         padding-top: 164px;
     }
