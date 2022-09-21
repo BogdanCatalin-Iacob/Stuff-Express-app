@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_header %}
-<!-- Top container under base.html header to push down the body-->
+    <!-- Top container under base.html header to push down the body-->
     <div class="container header-container">
         <div class="row">
             <div class="col"></div>
@@ -11,10 +11,64 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="overlay"></div>  <!-- white overlay to cover the main background -->
+
+    <!-- Products -->
+    <div class="container-fluid">
+        <!-- Products list header -->
         <div class="row">
-            <div class="col">
-                {{ products }}
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">Products</h2>
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+        <!-- end header -->
+
+        <div class="row">
+            <div class="col-10 offset-1 product-container">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    <!-- list all the products into an individual card -->
+                    {% for product in products %}
+                        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2 mb-3">
+                            <div class="card h-100 border rounded-lg shadow bg-white rounded">
+
+                                <!-- top of the card -->
+                                {% if product.image %}
+                                    <a href="">
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                                    </a>
+                                {% else %}
+                                <a href="">
+                                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" class="card-img-top img-fluid">
+                                </a>
+                                {% endif %}
+                                <!-- end top of the card -->
+
+                                <!-- card body -->
+                                <div class="card-body pb-0">
+                                    <p class="mb-0">{{ product.name }}</p>
+                                </div>
+                                <!-- end body -->
+
+                                <!-- card footer -->
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="lead mb-0 text-left font-weight-bold">£{{ product.market_price }}</p>
+                                            {% if product.rating %}
+                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                                            {% else %}
+                                                <small class="text-muted">No Rating</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end footer -->
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

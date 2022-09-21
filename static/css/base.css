@@ -38,6 +38,16 @@ h6,
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #FFF;
+    z-index: -1;
+}
+
 
 /* ******************************************************************* */
 /* *                            Header                               * */
