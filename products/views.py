@@ -27,6 +27,9 @@ def all_products(request):
                 sort_key = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
 
+            if sort_key == 'category':
+                sort_key == 'category__name'
+
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 # reverse sorting direction
