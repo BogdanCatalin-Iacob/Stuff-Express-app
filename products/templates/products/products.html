@@ -18,7 +18,22 @@
         <!-- Products list header -->
         <div class="row">
             <div class="col text-center mt-3">
-                <h2 class="logo-font">Products</h2>
+                <!-- show categories names on top of the products list -->
+                {% if current_categories %}
+                    {% for category in current_categories %}
+                        <a class="text-decoration-none" href="{% url 'products' %}?category={{ category.name }}">
+                            <span class="badge badge-white text-black">
+                                <h4 class="logo-font">{{ category.friendly_name }}</h4>
+                            </span>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <a class="text-decoration-none" href="{% url 'products' %}">
+                        <span class="badge badge-white text-black">
+                            <h4 class="logo-font">All Products</h4>
+                        </span>
+                    </a>
+                {% endif %}
                 <hr class="w-50 mb-1">
             </div>
         </div>
@@ -34,6 +49,7 @@
                             <div class="card h-100 border rounded-lg shadow bg-white rounded">
 
                                 <!-- top of the card -->
+                                <!-- image of the product on card if it exists -->
                                 {% if product.image %}
                                     <a href="{% url 'product_detail' product.id %}">
                                         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top img-fluid">
@@ -56,11 +72,24 @@
                                     <div class="row">
                                         <div class="col">
                                             <p class="lead mb-0 text-left font-weight-bold">£{{ product.market_price }}</p>
+
+                                            <!-- category tag on product card -->
+                                            {% if product.category %}
+                                                <p class="small mt-1 mb-0">
+                                                    <a href="{% url 'products' %}?category={{ product.category.name }}" class="text-muted">
+                                                        <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                                    </a>
+                                                </p>
+                                            {% endif %}
+                                            <!-- end tag -->
+
+                                            <!-- product rating on the card -->
                                             {% if product.rating %}
                                                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                                             {% else %}
                                                 <small class="text-muted">No Rating</small>
                                             {% endif %}
+                                            <!-- end rating -->
                                         </div>
                                     </div>
                                 </div>
