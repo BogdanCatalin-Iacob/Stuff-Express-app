@@ -90,6 +90,19 @@ h6,
     border: 1px solid #000 !important;
 }
 
+/* Scroll to top button */
+#btn-up {
+    height: 75px;
+    width: 75px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btn-up-link {
+    cursor: pointer;
+}
+
 
 /* ******************************************************************* */
 /* *                         Media Queries                           * */

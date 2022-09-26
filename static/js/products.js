@@ -1,3 +1,7 @@
+// scroll to top variables
+let arrowUp = document.getElementById('btn-up');
+
+// sorting variables
 let sort;
 let direction;
 let selector = document.getElementById('sort-selector');
@@ -31,4 +35,13 @@ function sortParameters() {
     }
 }
 
+/**
+ * Scroll the page back to top
+ * when the displayed button is clicked
+ */
+function scrollToTop(){
+    window.scrollTo(0,0);
+}
+
 selector.addEventListener("change", sortParameters);
+arrowUp.addEventListener("click", scrollToTop);
