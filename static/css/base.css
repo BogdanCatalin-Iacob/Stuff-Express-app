@@ -52,6 +52,10 @@ h6,
     text-decoration: underline #000;
 }
 
+.border-black {
+    border: 1px solid black !important;
+}
+
 
 /* ******************************************************************* */
 /* *                            Header                               * */
