@@ -154,3 +154,10 @@
         </div>
     </div>
 {% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    <!-- load page specific js -->
+    <script type="text/javascript" src="/static/js/products.js"></script>
+{% endblock %}
