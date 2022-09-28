@@ -56,7 +56,22 @@
                                     <p class="my-0">£{{ item.product.market_price }}</p>
                                 </td>
                                 <td class="py-3 w-25">
-                                    <p class="my-0">{{ item.quantity }}</p>
+                                    <form method="POST" action="" class="form update-form">
+                                        {% csrf_token %}
+                                        <!-- quantity selector -->
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="number" class="form-control form-control-sm quantity-input col-md-3"
+                                                    name="quantity" value="{{ item.quantity }}"
+                                                    min="1" max="99" data-item_id="{{ item.ited_id }}"
+                                                    id="id_quantity_{{ item.item_id }}">
+                                                {% if item.product.has_sizes %}
+                                                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <!-- end quantity selector -->
+                                    </form>
                                 </td>
                                 <td class="py-3">
                                     <p class="my-0">£{{ item.subtotal }}</p>
