@@ -173,11 +173,11 @@
                     <!-- warning toast message -->
                         {% include 'includes/toasts/toast_warning.html' %}
                     {% elif level == 25 %}
-                    <!-- info toast message -->
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% else %}
-                    <!-- success toast message -->
+                        <!-- success toast message -->
                         {% include 'includes/toasts/toast_success.html' %}
+                    {% else %}
+                        <!-- info toast message -->
+                        {% include 'includes/toasts/toast_info.html' %}
                     {% endif %}
                 {% endwith %}
             {% endfor %}
