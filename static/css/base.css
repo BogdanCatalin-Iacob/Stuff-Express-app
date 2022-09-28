@@ -103,7 +103,9 @@ h6,
     right: 10px;
 }
 
-.btn-up-link {
+.btn-up-link,
+.update-link,
+.remove-item {
     cursor: pointer;
 }
 
