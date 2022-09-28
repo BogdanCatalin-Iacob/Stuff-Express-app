@@ -160,9 +160,28 @@
     </header>
     <!-- End header -->
 
-    <!-- Display messages -->
+    <!-- from code institute -->
+    <!-- Display toast messages -->
     {% if messages %}
-        <div class="message-container"></div>
+        <div class="message-container">
+            {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                    <!-- error toast message -->
+                        {% include 'includes/toasts/toast_error.html' %}
+                    {% elif level == 30 %}
+                    <!-- warning toast message -->
+                        {% include 'includes/toasts/toast_warning.html' %}
+                    {% elif level == 25 %}
+                    <!-- info toast message -->
+                        {% include 'includes/toasts/toast_info.html' %}
+                    {% else %}
+                    <!-- success toast message -->
+                        {% include 'includes/toasts/toast_success.html' %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
     {% endif %}
 
     <!-- Extra content in the header but under it -->
@@ -175,6 +194,9 @@
 
     <!-- Block for js -->
     {% block postloadjs %}
+        <script type="text/javascript">
+            $('.toast').toast('show');
+        </script>
     {% endblock %}
 
 </body>

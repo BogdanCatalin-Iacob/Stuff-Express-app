@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
+
+from products.models import Product
 
 
 def view_bag(request):
@@ -13,6 +16,7 @@ def add_to_bag(request, item_id):
     '''
     Add to bag products of specified quantity
     '''
+    product = Product.objects.get(pk=item_id)
 
     # get the quantity selected by user
     quantity = int(request.POST.get('quantity'))
@@ -42,6 +46,7 @@ def add_to_bag(request, item_id):
             bag[item_id] += quantity
         else:
             bag[item_id] = quantity
+            messages.success(request, f'Added {product.name} to your bag')
 
     # set the bag items into session
     request.session['bag'] = bag
