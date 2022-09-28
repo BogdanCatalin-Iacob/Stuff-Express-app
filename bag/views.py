@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, HttpResponse
 
 
 def view_bag(request):
@@ -8,6 +8,7 @@ def view_bag(request):
     return render(request, 'bag/bag.html')
 
 
+# from code institute
 def add_to_bag(request, item_id):
     '''
     Add to bag products of specified quantity
@@ -46,3 +47,74 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
 
     return redirect(redirect_url)
+
+
+# from code institute
+def adjust_bag(request, item_id):
+    '''
+    Adjust the quantity of selected product
+    '''
+
+    # get the quantity selected by user
+    quantity = int(request.POST.get('quantity'))
+
+    # set the user selected size
+    size = None
+    if 'product_size' in request.POST:
+        size = request.POST['product_size']
+
+    # check if bag exist in session else create an empty dict
+    bag = request.session.get('bag', {})
+
+    # update item quantity
+    if size:
+        # if the item already exist with the same size increase quantity
+        if quantity > 0:
+            bag[item_id]['items_by_size'][size] = quantity
+        else:
+            del bag[item_id]['items_by_size'][size]
+            if not bag[item_id]['items_by_size']:
+                bag.pop(item_id)
+    else:
+        # update item quantity if item has no sizes
+        if quantity > 0:
+            bag[item_id] = quantity
+        else:
+            bag.pop(item_id)
+
+    # set the bag items into session
+    request.session['bag'] = bag
+
+    return redirect(reverse('view_bag'))
+
+
+# from code institute
+def remove_from_bag(request, item_id):
+    '''
+    Remove the item from bag
+    '''
+
+    try:
+        # set the user selected size
+        size = None
+        if 'product_size' in request.POST:
+            size = request.POST['product_size']
+
+        # check if bag exist in session else create an empty dict
+        bag = request.session.get('bag', {})
+
+        # delete item by size
+        if size:
+            del bag[item_id]['items_by_size'][size]
+            if not bag[item_id]['items_by_size']:
+                bag.pop(item_id)
+        else:
+            # delete item if has no sizes
+            bag.pop(item_id)
+
+        # set the bag items into session
+        request.session['bag'] = bag
+
+        return HttpResponse(status=200)
+    except Exception:
+        return HttpResponse(status=500)
