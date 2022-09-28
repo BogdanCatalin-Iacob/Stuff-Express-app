@@ -20,7 +20,7 @@ def add_to_bag(request, item_id):
     # set the user selected size
     size = None
     if 'product_size' in request.POST:
-        size = request.POST['size']
+        size = request.POST['product_size']
 
     # check if bag exist in session else create an empty dict
     bag = request.session.get('bag', {})
@@ -30,9 +30,9 @@ def add_to_bag(request, item_id):
         # if the item already exist with the same size increase quantity
         if item_id in list(bag.keys()):
             if size in bag[item_id]['items_by_size'].keys():
-                bag[item_id]['items_by_size'] += quantity
+                bag[item_id]['items_by_size'][size] += quantity
             else:
-                bag[item_id]['items_by_size'] = quantity
+                bag[item_id]['items_by_size'][size] = quantity
         else:
             bag[item_id] = {'items_by_size': {size: quantity}}
     else:
