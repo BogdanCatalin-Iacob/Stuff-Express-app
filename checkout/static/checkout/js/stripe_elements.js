@@ -32,7 +32,7 @@ card.mount('#card-element');
 
 // from code institute
 // Handle realtime validation errors on the card element
-card.addEventListener('change', function (event){
+card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
     if (event.error) {
         var html = `
@@ -64,7 +64,7 @@ form.addEventListener('submit', function(ev) {
 
     // get form data which can't be put in payment intent
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
-    // From using {% csrf_toke %} in the form
+    // From using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
@@ -102,7 +102,7 @@ form.addEventListener('submit', function(ev) {
                     postal_code: $.trim(form.postcode.value),
                     state: $.trim(form.county.value),
                 }
-            }
+            },
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');

@@ -23,7 +23,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
-            'save-info': request.POST.get('save_info'),
+            'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
         return HttpResponse(status=200)
@@ -61,7 +61,11 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_bag = json.dumps(bag)
+            order.save()
 
             # create each lineitem
             for item_id, item_data in bag.items():
@@ -115,15 +119,15 @@ def checkout(request):
         # create payment intent
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
-                    amount=stripe_total,
-                    currency=settings.STRIPE_CURRENCY
-                )
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY
+            )
 
         order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
-        Did you forget to set it in your environment?')
+            Did you forget to set it in your environment?')
 
     template = 'checkout/checkout.html'
     context = {
