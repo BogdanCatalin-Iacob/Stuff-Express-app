@@ -1,0 +1,1 @@
+Stuff Express confirmation form order number {{ order.order_number}}
