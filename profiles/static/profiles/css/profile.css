@@ -1,4 +1,10 @@
 /* from code institute */
+/* same height as profile form and submit button */
+.order-history {
+    max-height: 416px;
+    overflow-y: auto;
+}
+
 #profile-update-form .form-control {
     color: #000;
 }
