@@ -142,6 +142,16 @@
                                         <small class="text-muted">No Rating</small>
                                         {% endif %}
                                         <!-- end rating -->
+                                        
+                                        <!-- edit / delete buttons -->
+                                        {% if request.user.is_superuser %}
+                                            <p class="mt-1 mb-0">
+                                                <small class="ml-3">
+                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> | 
+                                                    <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete</a>
+                                                </small>
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
