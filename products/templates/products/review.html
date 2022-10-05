@@ -1,25 +1,46 @@
 
 <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-    <p class="text-muted">Reviews</p>
-    <p class="mb-4">{{ reviews.user }}</p>
+    <p>Reviews</p>
+    <hr>
+    <!-- review container -->
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="input-group">
+                <p class="mr-4"><i class="far fa-user mr-2"></i>{{ review.user }}</p>
+                <span class="icon"><i class="fas fa-star checked"></i></span>
+                <span> {{ review.star_rating }} / 5</span>
+            </div>
+            <span class="mr-4"><i class="far fa-clock mr-2"></i>{{ review.date }}</span>
+            <span></span>
+            <p class="mt-4 mr-4 mb-4">{{ review.review_text }}</p>
+        {% endfor %}
+    {% else %}
+        <p>No reviews!</p>
+    {% endif %}
+    <!-- end review -->
+
+    <hr>
+    
 </div>
 
 <div class="form-group col-12 col-md-6 col-lg-4">
     <!-- <input type="hidden" id="username" value="{{ u }}"> -->
     <label for="review-body1" class="text-muted">Rate this product</label>
     <!-- stars form -->
-    <form class="d-inline" action="" method="POST">
-        {% csrf_token %}
-        <a class="icon star-btn" value="1"><i id="first" class="far fa-star"></i></a>
-        <a class="icon star-btn" value="2"><i id="second" class="far fa-star"></i></a>
-        <a class="icon star-btn" value="3"><i id="third" class="far fa-star"></i></a>
-        <a class="icon star-btn" value="4"><i id="fourth" class="far fa-star"></i></a>
-        <a class="icon star-btn" value="5"><i id="fifth" class="far fa-star"></i></a>
-    </form>
+    <!-- <form class="d-inline" action="" method="POST"> -->
+        <!-- {% csrf_token %} -->
+        <a class="icon" value="1"><i id="first" class="far fa-star"></i></a>
+        <a class="icon" value="2"><i id="second" class="far fa-star"></i></a>
+        <a class="icon" value="3"><i id="third" class="far fa-star"></i></a>
+        <a class="icon" value="4"><i id="fourth" class="far fa-star"></i></a>
+        <a class="icon" value="5"><i id="fifth" class="far fa-star"></i></a>
+    <!-- </form> -->
     <!-- end stars form -->
     <!-- text review form -->
     <form action="" method="POST">
         {% csrf_token %}
+        <input type="hidden" id="star-rating" value="0">
+        <input type="hidden" id="username" value="{{ user }}">
         <textarea class="form-control" id="review-body" rows="3" placeholder="Your review"></textarea>
         <input type="submit" class="btn btn-sm rounded-lg border border-black mt-4" value="Submit review">
     </form>
