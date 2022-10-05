@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Category
+from .models import Product, Category, Review
 
 
 # from code institute
@@ -17,3 +17,13 @@ class ProductForm(forms.ModelForm):
         self.fields['category'].choices = friendly_names
         for friendly_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border border-black rounded-lg'
+
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = (
+            'review_text',
+            'star_rating',
+        )
