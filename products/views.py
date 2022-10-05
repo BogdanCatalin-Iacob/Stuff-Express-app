@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category
-from .forms import ProductForm
+from .models import Product, Category, Review
+from .forms import ProductForm, ReviewForm
+from profiles.models import UserProfile
 
 
 # based on code institute django module
@@ -77,11 +78,16 @@ def product_detail(request, product_id):
     '''
     A view to show individual product details
     '''
-
+    user = request.user
     product = get_object_or_404(Product, pk=product_id)
+
+    # get review if exists
+    reviews = Review.objects.filter(pk=product_id)
 
     context = {
         'product': product,
+        'reviews': reviews,
+        'user': user,
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -162,3 +168,22 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+def review(request, product_id):
+    '''
+    Product star review with or without text review
+    '''
+    
+    # form = ReviewForm()
+    # product = get_object_or_404(Product, pk=product_id)
+    # user = get_object_or_404(UserProfile, user=request.user)
+
+    # if request.method == 'POST':
+    #     form = ReviewForm(request.POST)
+    #     if form.is_valid():
+    #         review = form.save(commit=False)
+    #         review.user = user
+    #         review.product = product
+    #         review.save()
+
