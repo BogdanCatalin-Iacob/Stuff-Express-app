@@ -123,5 +123,57 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        {% include 'products/review.html' %}
+    </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    <script type="text/javascript">
+
+        // get the stars
+        const starOne = document.getElementById('first');
+        const starTwo = document.getElementById('second');
+        const starThree = document.getElementById('third');
+        const starFour = document.getElementById('fourth');
+        const starFive = document.getElementById('fifth');
+
+        // create array of the stars
+        let stars = [starOne, starTwo, starThree, starFour, starFive];
+
+        // make stars solid green when mouse over
+        stars.forEach(star => star.addEventListener('mouseover', (event) => {
+            let starIndex = stars.indexOf(star);
+            for (starIndex; starIndex >= 0; starIndex--){
+                stars[starIndex].classList.replace('far', 'fas');
+                stars[starIndex].classList.add('checked');
+            }
+        }));
+        
+        // make stars empty with black border when mouse out
+        stars.forEach(star => star.addEventListener('mouseout', (event) => {
+            let starIndex = stars.indexOf(star);
+            for (starIndex; starIndex >= 0; starIndex--){
+                stars[starIndex].classList.replace('fas', 'far');
+                stars[starIndex].classList.remove('checked');
+            }
+        }));
+
+        stars.forEach(star => star.addEventListener('click', (event)=> {
+            let starIndex = stars.indexOf(star);
+            for (let index = 0; index < 5; index++){
+                if(stars[index].classList.contains('checked')){
+                    if (index > starIndex){
+                        stars[index].classList.replace('fas','far');
+                        stars[index].classList.remove('checked');
+                    }else {
+                    stars[index].classList.replace('far', 'fas');
+                    stars[index].classList.add('checked')
+                    } 
+                }
+            }
+        }))
+
+    </script>
 {% endblock %}
