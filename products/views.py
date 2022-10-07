@@ -14,7 +14,6 @@ def all_products(request):
     '''
     A view to show all products, including sorting and search queries
     '''
-
     products = Product.objects.all()
     query = None
     categories = None
@@ -22,7 +21,6 @@ def all_products(request):
     direction = None
 
     if request.GET:
-
         # query by sorting products
         if 'sort' in request.GET:
             sort_key = request.GET['sort']
@@ -69,7 +67,6 @@ def all_products(request):
         'current_categories': categories,
         'current_sorting': current_sorting,
     }
-
     return render(request, 'products/products.html', context)
 
 
@@ -82,14 +79,13 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
     # get review if exists
-    reviews = Review.objects.filter(pk=product_id)
+    reviews = Review.objects.filter(product=product_id)
 
     context = {
         'product': product,
         'reviews': reviews,
         'user': user,
     }
-
     return render(request, 'products/product_detail.html', context)
 
 
@@ -118,7 +114,6 @@ def add_product(request):
     context = {
         'form': form,
     }
-
     return render(request, template, context)
 
 
@@ -151,7 +146,6 @@ def edit_product(request, product_id):
         'form': form,
         'product': product,
     }
-
     return render(request, template, context)
 
 
@@ -174,16 +168,21 @@ def review(request, product_id):
     '''
     Product star review with or without text review
     '''
-    
     # form = ReviewForm()
-    # product = get_object_or_404(Product, pk=product_id)
-    # user = get_object_or_404(UserProfile, user=request.user)
+    product = get_object_or_404(Product, pk=product_id)
+    user = get_object_or_404(UserProfile, user=request.user)
 
-    # if request.method == 'POST':
-    #     form = ReviewForm(request.POST)
-    #     if form.is_valid():
-    #         review = form.save(commit=False)
-    #         review.user = user
-    #         review.product = product
-    #         review.save()
+    if request.method == 'POST':
+        # text = request.POST.get('review_text')
+        # stars = request.POST.get('star_rating')
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = user
+            review.product = product
+            review.save()
+            messages.success(request, 'Your review was successfully posted!')
+        else:
+            messages.error(request, 'Review posting failed!')
 
+    return redirect(reverse('product_detail', args=[product.id]))
