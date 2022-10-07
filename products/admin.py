@@ -30,10 +30,11 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         'user',
         'product',
-        'date',
         'review_text',
         'star_rating',
     )
+
+    readonly_fields = ('date',)
 
 
 # Register models
