@@ -7,8 +7,11 @@
         {% for review in reviews %}
             <div class="input-group">
                 <p class="mr-4"><i class="far fa-user mr-2"></i>{{ review.user }}</p>
-                <span class="icon"><i class="fas fa-star checked"></i></span>
-                <span> {{ review.star_rating }} / 5</span>
+                <span class="icon"><i class="fas fa-star {% if review.star_rating > 0 %} checked {% endif %}"></i></span>
+                <span class="icon"><i class="fas fa-star {% if review.star_rating > 1 %} checked {% endif %}"></i></span>
+                <span class="icon"><i class="fas fa-star {% if review.star_rating > 2 %} checked {% endif %}"></i></span>
+                <span class="icon"><i class="fas fa-star {% if review.star_rating > 3 %} checked {% endif %}"></i></span>
+                <span class="icon"><i class="fas fa-star {% if review.star_rating > 4 %} checked {% endif %}"></i></span>
             </div>
             <span class="mr-4"><i class="far fa-clock mr-2"></i>{{ review.date }}</span>
             <span></span>
