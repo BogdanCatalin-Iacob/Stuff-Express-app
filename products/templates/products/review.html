@@ -1,4 +1,3 @@
-
 <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
     <p>Reviews</p>
     <hr>
@@ -16,37 +15,37 @@
             <span class="mr-4"><i class="far fa-clock mr-2"></i>{{ review.date }}</span>
             <span></span>
             <p class="mt-4 mr-4 mb-4">{{ review.review_text }}</p>
+            <hr>
         {% endfor %}
     {% else %}
         <p>No reviews!</p>
     {% endif %}
     <!-- end review -->
-
-    <hr>
-    
 </div>
 
 <div class="form-group col-12 col-md-6 col-lg-4">
-    <!-- <input type="hidden" id="username" value="{{ u }}"> -->
     <label for="review-body1" class="text-muted">Rate this product</label>
-    <!-- stars form -->
-    <!-- <form class="d-inline" action="" method="POST"> -->
-        <!-- {% csrf_token %} -->
-        <a class="icon" value="1"><i id="first" class="far fa-star"></i></a>
-        <a class="icon" value="2"><i id="second" class="far fa-star"></i></a>
-        <a class="icon" value="3"><i id="third" class="far fa-star"></i></a>
-        <a class="icon" value="4"><i id="fourth" class="far fa-star"></i></a>
-        <a class="icon" value="5"><i id="fifth" class="far fa-star"></i></a>
-    <!-- </form> -->
-    <!-- end stars form -->
+    <!-- stars -->
+    <div class="stars">
+        <a><i id="first" class="fas fa-star"></i></a>
+        <a><i id="second" class="fas fa-star"></i></a>
+        <a><i id="third" class="fas fa-star"></i></a>
+        <a><i id="fourth" class="fas fa-star"></i></a>
+        <a><i id="fifth" class="fas fa-star"></i></a>
+    </div>
+    <!-- end stars -->
+
     <!-- text review form -->
-    <form action="" method="POST">
+    <form action="{% url 'review' product.id %}" method="POST">
         {% csrf_token %}
-        <input type="hidden" id="star-rating" value="0">
-        <input type="hidden" id="username" value="{{ user }}">
-        <textarea class="form-control" id="review-body" rows="3" placeholder="Your review"></textarea>
-        <input type="submit" class="btn btn-sm rounded-lg border border-black mt-4" value="Submit review">
+        <input type="hidden" id="star-rating" name="star_rating" value="0">
+        <textarea class="form-control" id="review-text" name="review_text" rows="3" placeholder="Your review"></textarea>
+
+        {% if user.is_authenticated %}
+            <input type="submit" class="btn btn-sm rounded-lg border border-black mt-4" value="Submit review">
+        {% else %}
+            You must be logged in to post a review! <a href="{% url 'account_login' %}">Log in</a>
+        {% endif %}
     </form>
-    
     <!-- end text form -->
 </div>
