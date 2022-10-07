@@ -139,6 +139,8 @@
         const starFour = document.getElementById('fourth');
         const starFive = document.getElementById('fifth');
 
+        const starRating = document.getElementById('star-rating');
+
         // create array of the stars
         let stars = [starOne, starTwo, starThree, starFour, starFive];
 
@@ -146,34 +148,30 @@
         stars.forEach(star => star.addEventListener('mouseover', (event) => {
             let starIndex = stars.indexOf(star);
             for (starIndex; starIndex >= 0; starIndex--){
-                stars[starIndex].classList.replace('far', 'fas');
                 stars[starIndex].classList.add('checked');
             }
         }));
         
-        // make stars empty with black border when mouse out
+        // remove green colour when mouse out
         stars.forEach(star => star.addEventListener('mouseout', (event) => {
             let starIndex = stars.indexOf(star);
             for (starIndex; starIndex >= 0; starIndex--){
-                stars[starIndex].classList.replace('fas', 'far');
                 stars[starIndex].classList.remove('checked');
             }
         }));
 
-        stars.forEach(star => star.addEventListener('click', (event)=> {
-            let starIndex = stars.indexOf(star);
-            for (let index = 0; index < 5; index++){
-                if(stars[index].classList.contains('checked')){
-                    if (index > starIndex){
-                        stars[index].classList.replace('fas','far');
-                        stars[index].classList.remove('checked');
-                    }else {
-                    stars[index].classList.replace('far', 'fas');
-                    stars[index].classList.add('checked')
-                    } 
+        /* mark all stars up to clicked star with solid green and
+        set input value to index value + 1
+        */
+        stars.forEach((star, index) => star.addEventListener('click', ()=> {
+            starRating.value = index + 1;
+            stars.forEach((otherStar, otherIndex) => {
+                if(otherIndex <= index) {
+                    otherStar.classList.add('active');
+                }else if (otherIndex > index){
+                    otherStar.classList.remove('active');
                 }
-            }
-        }))
-
+            });
+        }));
     </script>
 {% endblock %}
