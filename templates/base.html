@@ -192,9 +192,38 @@
     {% block page_header %}
     {% endblock %}
 
+    
+
     <!-- Main content block -->
     {% block content %}
     {% endblock %}
+
+
+    <hr>
+     <!-- Footer for all pages -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <h5 class="black-text"><strong>Stuff</strong><em>Express</em></h5>
+                    <p class="black-text">Buy and sell with ease.</p>
+                </div>
+                <div class="col-12 col-md-4 offset-4">
+                    <h5 class="black-text">Find out more from us!</h5>
+                    <div id="social">
+                        <a class="" href="https://www.facebook.com" target="_blank" rel="noopener"
+                            aria-label="Find us on Facebook (link opens in a new tab)"><i class="fab fa-facebook"></i></a>
+                        <a class="" href="https://www.instagram.com" target="_blank" rel="noopener"
+                            aria-label="Find us on Instagram (link opens in a new tab)"><i class="fab fa-instagram"></i></a>
+                        <a class="" href="https://www.twitter.com" target="_blank" rel="noopener"
+                            aria-label="Find us on Twiter (link opens in a new tab)"><i class="fab fa-twitter"></i></a>
+                        <a class="" href="https://www.youtube.com" target="_blank" rel="noopener"
+                            aria-label="Find us on Youtube (link opens in a new tab)"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Block for js -->
     {% block postloadjs %}
