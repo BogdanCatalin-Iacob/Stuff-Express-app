@@ -41,8 +41,18 @@ class Product(models.Model):
 
 
 class Review(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_review')
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True, related_name='product_review')
+    user = models.ForeignKey(
+        UserProfile,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='user_review')
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='product_review')
     date = models.DateTimeField(auto_now_add=True)
     review_text = models.TextField(null=True, blank=True)
     star_rating = models.IntegerField(null=False, blank=False, default=0)
