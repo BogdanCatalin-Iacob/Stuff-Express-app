@@ -147,6 +147,9 @@
 
         // make stars solid green when mouse over
         stars.forEach(star => star.addEventListener('mouseover', (event) => {
+            for (let rate = 0; rate < 5; rate++){
+                stars[rate].classList.remove('checked');
+            }
             let starIndex = stars.indexOf(star);
             for (starIndex; starIndex >= 0; starIndex--){
                 stars[starIndex].classList.add('checked');
@@ -155,9 +158,13 @@
         
         // remove green colour when mouse out
         stars.forEach(star => star.addEventListener('mouseout', (event) => {
+            let initialStar = starRating.value;
             let starIndex = stars.indexOf(star);
             for (starIndex; starIndex >= 0; starIndex--){
                 stars[starIndex].classList.remove('checked');
+            }
+            for (let resetStar = 0; resetStar < initialStar; resetStar++){
+                stars[resetStar].classList.add('checked');
             }
         }));
 
