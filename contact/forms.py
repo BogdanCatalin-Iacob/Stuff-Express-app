@@ -27,6 +27,6 @@ class ContactForm(forms.ModelForm):
             else:
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-        self.fields[field].widget.attrs['class'] = 'border-black \
-            rounded-lg profile-form-input'
-        self.fields[field].label = False
+            self.fields[field].label = False
+        self.fields[field].widget.attrs['class'] = 'rounded-lg \
+            profile-form-input'
