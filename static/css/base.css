@@ -5,7 +5,7 @@ html {
 body {
     background: url('/media/home-image-cart.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 116px);
     font-family: Roboto, Arial, sans-serif;
 }
 
@@ -107,7 +107,7 @@ h6,
 .btn:hover,
 .btn:active,
 .btn:focus {
-    background: #333;
+    background-color: #333 !important;
     color: #FFF;
 }
 
@@ -119,9 +119,9 @@ h6,
 #btn-up {
     height: 75px;
     width: 75px;
-    position: fixed;
+    background-color: #FFF;
+    position: sticky;
     bottom: 10px;
-    right: 10px;
 }
 
 .btn-up-link,
@@ -304,7 +304,7 @@ footer i:hover {
     /* from codeinstitute */
     /* push the body down */
     .header-container {
-        padding-top: 164px;
+        padding-top: 116px;
     }
 }
 
@@ -319,9 +319,9 @@ footer i:hover {
         height: calc(100vh - 116px);
     }
 
-    .display-4.logo-font.text-black {
-        font-size: 2rem;
-    }
+/* ******************************************************************* */
+/* *                         Mobile nav                              * */
+/* ******************************************************************* */
 
     .nav-link {
         padding: 0.1rem;
@@ -338,5 +338,16 @@ footer i:hover {
 
     .navbar {
         justify-content: flex-start;
+    }
+/* ******************************************************************* */
+/* *                         Mobile buttons                          * */
+/* ******************************************************************* */
+    .btn{
+        padding: .35rem .35rem;
+    }
+
+    #btn-up {
+        height: 50px;
+        width: 50px;
     }
 }
