@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_header %}
+    <!-- Top container under base.html header to push down the body-->
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- bag heading -->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <hr>
+                <h2 class="logo-font mb-4">Review</h2>
+                <h5>Edit review</h5>
+                <hr>
+            </div>
+        </div>
+        <!-- end heading -->
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!-- stars -->
+                <div class="stars">
+                    <a><i id="first" class="fas fa-star {% if review.star_rating > 0 %} checked {% endif %}"></i></a>
+                    <a><i id="second" class="fas fa-star {% if review.star_rating > 1 %} checked {% endif %}"></i></a>
+                    <a><i id="third" class="fas fa-star {% if review.star_rating > 2 %} checked {% endif %}"></i></a>
+                    <a><i id="fourth" class="fas fa-star {% if review.star_rating > 3 %} checked {% endif %}"></i></a>
+                    <a><i id="fifth" class="fas fa-star {% if review.star_rating > 4 %} checked {% endif %}"></i></a>
+                </div>
+                <!-- end stars -->
+
+                <!-- text review form -->
+                <form action="{% url 'edit_review' product.id review.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="star-rating" name="star_rating" value="{{ review.star_rating }}">
+                    <textarea class="form-control" id="review-text" name="review_text" rows="3" placeholder="Your review">{{ review.review_text }}</textarea>
+                    <!-- end text form -->
+                    <div class="text-right">
+                        <a href="{% url 'product_detail' product.id %}" class="btn border border-black rounded-lg">Cancel</a>
+                        <button class="btn border border-black rounded-lg" type="submit">Update review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end add product -->
+    </div>
+   
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+
+        // get the stars
+        const starOne = document.getElementById('first');
+        const starTwo = document.getElementById('second');
+        const starThree = document.getElementById('third');
+        const starFour = document.getElementById('fourth');
+        const starFive = document.getElementById('fifth');
+
+        const starRating = document.getElementById('star-rating');
+
+        // create array of the stars
+        let stars = [starOne, starTwo, starThree, starFour, starFive];
+
+        // make stars solid green when mouse over
+        stars.forEach(star => star.addEventListener('mouseover', (event) => {
+            for (let rate = 0; rate < 5; rate++){
+                stars[rate].classList.remove('checked');
+            }
+            let starIndex = stars.indexOf(star);
+            for (starIndex; starIndex >= 0; starIndex--){
+                stars[starIndex].classList.add('checked');
+            }
+        }));
+        
+        // remove green colour when mouse out
+        stars.forEach(star => star.addEventListener('mouseout', (event) => {
+            let initialStar = starRating.value;
+            let starIndex = stars.indexOf(star);
+            for (starIndex; starIndex >= 0; starIndex--){
+                stars[starIndex].classList.remove('checked');
+            }
+            for (let resetStar = 0; resetStar < initialStar; resetStar++){
+                stars[resetStar].classList.add('checked');
+            }
+        }));
+
+        /* mark all stars up to clicked star with solid green and
+        set input value to index value + 1
+        */
+        stars.forEach((star, index) => star.addEventListener('click', ()=> {
+            starRating.value = index + 1;
+            stars.forEach((otherStar, otherIndex) => {
+                if(otherIndex <= index) {
+                    otherStar.classList.add('active');
+                }else if (otherIndex > index){
+                    otherStar.classList.remove('active');
+                }
+            });
+        }));
+    </script>
+{% endblock %}
