@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import (
+    render, get_object_or_404, redirect, reverse, HttpResponse)
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -168,13 +169,10 @@ def review(request, product_id):
     '''
     Product star review with or without text review
     '''
-    # form = ReviewForm()
     product = get_object_or_404(Product, pk=product_id)
     user = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        # text = request.POST.get('review_text')
-        # stars = request.POST.get('star_rating')
         form = ReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
@@ -186,3 +184,46 @@ def review(request, product_id):
             messages.error(request, 'Review posting failed!')
 
     return redirect(reverse('product_detail', args=[product.id]))
+
+
+# @login_required
+def edit_review(request, review_id, product_id):
+#     '''
+#     Edit an existing review
+#     '''
+    pass
+#     review = get_object_or_404(Review, pk=review_id)
+#     product = get_object_or_404(Product, pk=product_id)
+
+#     if request.method == 'POST':
+#         form = ReviewForm(request.POST, instance=review)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Successfully updated review!')
+#             return redirect(reverse('product_detail', args=[product.id]))
+#         else:
+#             messages.error(request, 'Failed to update product. \
+#                 Please ensure the form is valid.')
+
+#     template = 'products/edit_product.html'
+#     context = {
+#         'form': form,
+#         'product': product,
+#     }
+#     return render(request, template, context)
+
+
+@login_required
+def delete_review(request, review_id):
+    '''
+    Delete a product from db
+    '''
+    try:
+        review = get_object_or_404(Review, pk=review_id)
+        product = get_object_or_404(Product, pk=review.product.id)
+        review.delete()
+        messages.success(request, 'Review successfully deleted!')
+        return redirect(reverse('product_detail', args=[product.id]))
+    except Exception:
+        messages.error(request, 'Could not delete your review')
+        return HttpResponse(status=500)
