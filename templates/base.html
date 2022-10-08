@@ -201,9 +201,13 @@
                     <p class="black-text">Buy and sell with ease.</p>
                 </div>
                 <div class="col-12 col-md-4 offset-md-4">
-                    <h5 class="black-text">Get in contact!</h5>
-                    <a href="{% url 'contact' %}">stuffexpress@email.com</a>
-                    <div id="social">
+                    <h5 class="black-text d-flex justify-content-center">Get in touch!</h5>
+                    <a href="{% url 'contact' %}" aria-label="Get in touch form. 
+                        Opens a new page containing the form" class="text-black d-flex justify-content-center">
+                        stuffexpress@email.com</a>
+                    <div id="social" class=" d-flex justify-content-center">
+                        <a href="{% url 'contact' %}" aria-label="Get in touch form. Opens a new page containing the form">
+                            <i class="fas fa-envelope"></i></a>
                         <a class="" href="https://www.facebook.com" target="_blank" rel="noopener"
                             aria-label="Find us on Facebook (link opens in a new tab)"><i class="fab fa-facebook"></i></a>
                         <a class="" href="https://www.instagram.com" target="_blank" rel="noopener"
