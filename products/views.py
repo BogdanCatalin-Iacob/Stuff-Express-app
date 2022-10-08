@@ -186,31 +186,38 @@ def review(request, product_id):
     return redirect(reverse('product_detail', args=[product.id]))
 
 
-# @login_required
-def edit_review(request, review_id, product_id):
-#     '''
-#     Edit an existing review
-#     '''
-    pass
-#     review = get_object_or_404(Review, pk=review_id)
-#     product = get_object_or_404(Product, pk=product_id)
+@login_required
+def edit_review(request, product_id, review_id):
+    '''
+    Edit an existing review
+    '''
+    if request.user.is_authenticated:
+        product = get_object_or_404(Product, pk=product_id)
+        review = get_object_or_404(Review, pk=review_id)
 
-#     if request.method == 'POST':
-#         form = ReviewForm(request.POST, instance=review)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Successfully updated review!')
-#             return redirect(reverse('product_detail', args=[product.id]))
-#         else:
-#             messages.error(request, 'Failed to update product. \
-#                 Please ensure the form is valid.')
+    # check if logged user is the same as the initial writter
+    if request.user.id == review.user.id:
+        if request.method == 'POST':
+            form = ReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Successfully updated review!')
+            else:
+                messages.error(request, 'Failed to update review.')
+            return redirect(reverse('product_detail', args=[product.id]))
 
-#     template = 'products/edit_product.html'
-#     context = {
-#         'form': form,
-#         'product': product,
-#     }
-#     return render(request, template, context)
+        else:
+            form = ReviewForm(instance=review)
+
+        template = 'products/edit_review.html'
+        context = {
+            'form': form,
+            'product': product,
+            'review': review,
+            }
+        return render(request, template, context)
+
+    return redirect(reverse('product_detail', args=[product.id]))
 
 
 @login_required
