@@ -56,12 +56,26 @@ h6,
     border: 1px solid black !important;
 }
 
+.circle {
+    border: #007bff;
+    border-radius: 50%;
+}
+
 /* ******************************************************************* */
 /* *                            Review                               * */
 /* ******************************************************************* */
 
 .checked {
     color:rgb(57, 240, 57) !important; 
+}
+.active {
+    color:rgb(57, 240, 57) !important; 
+}
+
+.stars {
+    display: flex;
+    cursor: pointer;
+    padding: 3px;
 }
 
 /* ******************************************************************* */
@@ -188,6 +202,26 @@ input[name='query']::placeholder {
     height: 100px;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+/* ******************************************************************* */
+/* *                            Footer                               * */
+/* ******************************************************************* */
+footer {
+    background-color: white;
+}
+#social{
+    display: inline-block;
+}
+
+footer i:hover {
+    color: #66ff00;
+    transform: rotate(20deg);
+}
+  
+#social i {
+    font-size: 3rem;
+    margin: 0.5rem;
 }
 
 /* from code institute */
