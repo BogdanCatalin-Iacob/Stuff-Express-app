@@ -338,12 +338,14 @@ footer i:hover {
 
     .navbar {
         justify-content: flex-start;
+        font-size: .75rem;
     }
 /* ******************************************************************* */
 /* *                         Mobile buttons                          * */
 /* ******************************************************************* */
     .btn{
         padding: .35rem .35rem;
+        font-size: .8rem;
     }
 
     #btn-up {
