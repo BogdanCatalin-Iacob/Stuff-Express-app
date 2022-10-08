@@ -6,7 +6,6 @@ class ContactAdmin(admin.ModelAdmin):
     '''
     display contact fields
     '''
-
     list_display = (
         'first_name',
         'last_name',
@@ -18,5 +17,6 @@ class ContactAdmin(admin.ModelAdmin):
         'date',
     )
 
-    # register models
-    admin.site.register(Contact, ContactAdmin)
+
+# register models
+admin.site.register(Contact, ContactAdmin)
