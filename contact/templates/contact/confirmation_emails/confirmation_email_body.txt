@@ -1,0 +1,13 @@
+Hello {{ email_data.first_name }}!
+
+This is a confirmation email for your sent message.
+
+We try to get back to you as soon as possible.
+Mean while check our store at https://stuff-express-app.herokuapp.com/
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for you order!
+
+Sincerely,
+Stuff Express
