@@ -43,18 +43,42 @@ The live website can be found [here]()<br>
 
 -   ### User stories
 
-    -   #### First Time Visitor Goals
-     
+ As a **(role)** I can **(capability)**, so that **(received benefit)**
 
-    -   #### Returning Visitor Goals
-      
-
-    -   #### Frequent User Goals
-        
-
-    -   #### Admin User Goals
+| User story ID | As A/An  | I want to be able | So that I can...  |
+|---------------|----------|-------------------|-------------------|
+|View and Navigation |             |           |                   |
+| 1 |   Shopper   | View a list of  products               | Select products to purchase    |
+| 2 |             | View a specific category of products   | Quickly find products without having to search through all products  |
+| 3 |             | View individual product details        | Identify the price, description, product rating, product image, available sizes |
+| 4 |             | Quickly identify deals and special offers| Take advantage of special savings  |
+| 5 |             | Easily view the total price of my purchases at any time | Avoid spending too much   |
+| Registration and User |        |         |
+| 6 |  Site User  | Easily register an account                        | Have a personal account to view my profile and orders           |
+| 7 |             | Easily login or logout                            | Access my personal account information                          |
+| 8 |             | Easily recover my password in case i forget it    | Recover access to my account                                    |
+| 9 |             | Receive an email confirmation after registering   | Verify that my account registration was successful              |
+| 10 |            | Have a personalized user profile                  | View my personal order history and save my payment information  |
+|      Sorting and Searching         |                   |
+| 11 |   Shopper   | Sort the list of available products                                 | Easily identify the best rated, best priced and categorically sorted products   |
+| 12 |             | Sort a specific category of products                                | Find the best-priced or the best-rated product in a specific category           |
+| 13 |             | Sort multiple categories of products                                | Find the best-priced or the best-rated products accross broad categories        |
+| 14 |             | Search for a product by name or description                         | Find a specific product I'd like to purchase                                    |
+| 15 |             | Easily see what I've searched for and the number of results         | Quickly decide whether the product I want is available                          |
+|     Purchasing and Checkout    |             |             |    |
+| 16 |   Shopper   | Easily select the size and quantity of a product when purchasing it | Ensure I don't accidentally select the wrong product, quantity or size          |
+| 17 |             | View items in my basket                                             | Identify the total cost of my purchjase and all items I will receive            |
+| 18 |             | Adjust the quantity of individual items in my bag                   | Easily make changes to my purchase before checkout                              |
+| 19 |             | Easily enter my payment information                                 | Check out quickly                                                               |
+| 20 |             | Feel my personal and paymen information is safe and secure          | Confidentialy provide the needed information to make a purchase                 |
+| 21 |             | View an order confirmation after checkout                           | Verify that I haven't made any mistakes                                         |
+| 22 |             | Receive an email confirmation after checking out                    | Keep the confirmation of what I've purchased for my records                     |
+|   Admin and Store Management   |             |                                                  |                         |
+| 23 | Store Owner | Add a product                                                       | Add new items to my store                                                       |
+| 24 |             | Edit/ update a product                                              | Change product prices, descriptions, images and other product criteria          |
+| 25 |             | Delete a product                                                    | Remove items that are no longer for sale                                        |
+    
        
-
 -   ### Structure
 
     
