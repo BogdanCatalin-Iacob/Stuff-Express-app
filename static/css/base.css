@@ -1,12 +1,18 @@
-html {
+html, body {
     height: 100%;
 }
 
 body {
     background: url('/media/home-image-cart.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 116px);
+    /* height: calc(100vh - 116px); */
     font-family: Roboto, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
 }
 
 h1,
@@ -207,7 +213,8 @@ input[name='query']::placeholder {
 /* ******************************************************************* */
 /* *                            Footer                               * */
 /* ******************************************************************* */
-footer {
+.footer {
+    flex-shrink: 0;
     background-color: white;
 }
 #social{
