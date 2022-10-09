@@ -40,10 +40,12 @@
                 <form action="{% url 'edit_review' product.id review.id %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" id="star-rating" name="star_rating" value="{{ review.star_rating }}">
-                    <textarea class="form-control" id="review-text" name="review_text" rows="3" placeholder="Your review">{{ review.review_text }}</textarea>
+                    <textarea class="form-control" id="review-text" name="review_text" rows="3"
+                        placeholder="Your review">{{ review.review_text }}</textarea>
                     <!-- end text form -->
                     <div class="text-right">
-                        <a href="{% url 'product_detail' product.id %}" class="btn border border-black rounded-lg">Cancel</a>
+                        <a href="{% url 'product_detail' product.id %}"
+                            class="btn border border-black rounded-lg">Cancel</a>
                         <button class="btn border border-black rounded-lg" type="submit">Update review</button>
                     </div>
                 </form>
@@ -51,13 +53,11 @@
         </div>
         <!-- end add product -->
     </div>
-   
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript">
-
         // get the stars
         const starOne = document.getElementById('first');
         const starTwo = document.getElementById('second');
@@ -72,23 +72,23 @@
 
         // make stars solid green when mouse over
         stars.forEach(star => star.addEventListener('mouseover', (event) => {
-            for (let rate = 0; rate < 5; rate++){
+            for (let rate = 0; rate < 5; rate++) {
                 stars[rate].classList.remove('checked');
             }
             let starIndex = stars.indexOf(star);
-            for (starIndex; starIndex >= 0; starIndex--){
+            for (starIndex; starIndex >= 0; starIndex--) {
                 stars[starIndex].classList.add('checked');
             }
         }));
-        
+
         // remove green colour when mouse out
         stars.forEach(star => star.addEventListener('mouseout', (event) => {
             let initialStar = starRating.value;
             let starIndex = stars.indexOf(star);
-            for (starIndex; starIndex >= 0; starIndex--){
+            for (starIndex; starIndex >= 0; starIndex--) {
                 stars[starIndex].classList.remove('checked');
             }
-            for (let resetStar = 0; resetStar < initialStar; resetStar++){
+            for (let resetStar = 0; resetStar < initialStar; resetStar++) {
                 stars[resetStar].classList.add('checked');
             }
         }));
@@ -96,12 +96,12 @@
         /* mark all stars up to clicked star with solid green and
         set input value to index value + 1
         */
-        stars.forEach((star, index) => star.addEventListener('click', ()=> {
+        stars.forEach((star, index) => star.addEventListener('click', () => {
             starRating.value = index + 1;
             stars.forEach((otherStar, otherIndex) => {
-                if(otherIndex <= index) {
+                if (otherIndex <= index) {
                     otherStar.classList.add('active');
-                }else if (otherIndex > index){
+                } else if (otherIndex > index) {
                     otherStar.classList.remove('active');
                 }
             });

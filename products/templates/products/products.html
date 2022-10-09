@@ -21,11 +21,11 @@
                 <!-- show categories names on top of the products list -->
                 {% if current_categories %}
                     {% for category in current_categories %}
-                    <a class="text-decoration-none" href="{% url 'products' %}?category={{ category.name }}">
-                        <span class="badge badge-white text-black">
-                            <h4 class="logo-font">{{ category.friendly_name }}</h4>
-                        </span>
-                    </a>
+                        <a class="text-decoration-none" href="{% url 'products' %}?category={{ category.name }}">
+                            <span class="badge badge-white text-black">
+                                <h4 class="logo-font">{{ category.friendly_name }}</h4>
+                            </span>
+                        </a>
                     {% endfor %}
                 {% else %}
                     <a class="text-decoration-none" href="{% url 'products' %}">
@@ -51,9 +51,11 @@
                                     class="custom-select custom-select-sm rounded-lg border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...
                                     </option>
-                                    <option value="market_price_asc" {% if current_sorting == 'market_price_asc' %}selected{% endif %}>Price
+                                    <option value="market_price_asc"
+                                        {% if current_sorting == 'market_price_asc' %}selected{% endif %}>Price
                                         (low to high)</option>
-                                    <option value="market_price_desc" {% if current_sorting == 'market_price_desc' %}selected{% endif %}>Price
+                                    <option value="market_price_desc"
+                                        {% if current_sorting == 'market_price_desc' %}selected{% endif %}>Price
                                         (high to low)</option>
                                     <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>
                                         Rating (low to high)</option>
@@ -94,70 +96,71 @@
                 <div class="row">
                     <!-- list all the products into an individual card -->
                     {% for product in products %}
-                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2 mb-3">
-                        <div class="card h-100 border rounded-lg shadow bg-white rounded">
+                        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2 mb-3">
+                            <div class="card h-100 border rounded-lg shadow bg-white rounded">
 
-                            <!-- top of the card -->
-                            <!-- image of the product on card if it exists -->
-                            {% if product.image %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top img-fluid">
-                            </a>
-                            {% else %}
-                            <a href="">
-                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}"
-                                    class="card-img-top img-fluid">
-                            </a>
-                            {% endif %}
-                            <!-- end top of the card -->
+                                <!-- top of the card -->
+                                <!-- image of the product on card if it exists -->
+                                {% if product.image %}
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                                    </a>
+                                {% else %}
+                                    <a href="">
+                                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}"
+                                            class="card-img-top img-fluid">
+                                    </a>
+                                {% endif %}
+                                <!-- end top of the card -->
 
-                            <!-- card body -->
-                            <div class="card-body pb-0">
-                                <p class="mb-0">{{ product.name }}</p>
-                            </div>
-                            <!-- end body -->
+                                <!-- card body -->
+                                <div class="card-body pb-0">
+                                    <p class="mb-0">{{ product.name }}</p>
+                                </div>
+                                <!-- end body -->
 
-                            <!-- card footer -->
-                            <div class="card-footer bg-white pt-0 border-0 text-left">
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="lead mb-0 text-left font-weight-bold">£{{ product.market_price }}</p>
+                                <!-- card footer -->
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="lead mb-0 text-left font-weight-bold">£{{ product.market_price }}</p>
 
-                                        <!-- category tag on product card -->
-                                        {% if product.category %}
-                                        <p class="small mt-1 mb-0">
-                                            <a href="{% url 'products' %}?category={{ product.category.name }}"
-                                                class="text-muted">
-                                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-                                            </a>
-                                        </p>
-                                        {% endif %}
-                                        <!-- end tag -->
+                                            <!-- category tag on product card -->
+                                            {% if product.category %}
+                                                <p class="small mt-1 mb-0">
+                                                    <a href="{% url 'products' %}?category={{ product.category.name }}"
+                                                        class="text-muted">
+                                                        <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                                    </a>
+                                                </p>
+                                            {% endif %}
+                                            <!-- end tag -->
 
-                                        <!-- product rating on the card -->
-                                        {% if product.rating %}
-                                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
-                                            5</small>
-                                        {% else %}
-                                        <small class="text-muted">No Rating</small>
-                                        {% endif %}
-                                        <!-- end rating -->
-                                        
-                                        <!-- edit / delete buttons -->
-                                        {% if request.user.is_superuser %}
+                                            <!-- product rating on the card -->
+                                            {% if product.rating %}
+                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
+                                                    5</small>
+                                            {% else %}
+                                                <small class="text-muted">No Rating</small>
+                                            {% endif %}
+                                            <!-- end rating -->
+
+                                            <!-- edit / delete buttons -->
+                                            {% if request.user.is_superuser %}
                                             <p class="mt-1 mb-0">
                                                 <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> | 
-                                                    <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete</a>
+                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> |
+                                                    <a href="{% url 'delete_product' product.id %}"
+                                                        class="text-danger">Delete</a>
                                                 </small>
                                             </p>
-                                        {% endif %}
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- end footer -->
                             </div>
-                            <!-- end footer -->
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
             </div>

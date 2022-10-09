@@ -21,11 +21,12 @@
         <!-- Bootstrap Css -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        
+
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap"
+            rel="stylesheet">
 
         <!-- Custom Css -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -39,7 +40,7 @@
     {% block corejs %}
         <!-- Font Awsome -->
         <script src="https://kit.fontawesome.com/bf887c87da.js" crossorigin="anonymous"></script>
-        
+
         <!-- Bootstrap js -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -64,138 +65,135 @@
 
 <body>
     <div class="content">
-    <!-- Header -->
-    <header class="container-fluid fixed-top">
-        <!-- Logo and link to home page -->
-        <div class="row bg-white pt-lg-2 d-none d-lg-flex" id="topnav">
-            <div class="col-12 col-lg-4 my-auto text-center text-lg-left">
-                <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0">Stuff Express</h2>
-                </a>
-            </div>
-            <!-- end logo -->
+        <!-- Header -->
+        <header class="container-fluid fixed-top">
+            <!-- Logo and link to home page -->
+            <div class="row bg-white pt-lg-2 d-none d-lg-flex" id="topnav">
+                <div class="col-12 col-lg-4 my-auto text-center text-lg-left">
+                    <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                        <h2 class="logo-font text-black my-0">Stuff Express</h2>
+                    </a>
+                </div>
+                <!-- end logo -->
 
-            <!-- Search products -->
-            <div class="col-12 col-lg-4 my-auto">
-                <form action="{% url 'products' %}" method="GET">
-                    <div class="input-group w-100">
-                        <input type="text" class="form-control border border-black rounded-lg" name="query"
-                            placeholder="Search our store">
-                        <div class="input-group-append">
-                            <button type="submit" class="form-control btn btn-black border border-black rounded-lg">
-                                <span class="icon">
-                                    <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- end search -->
-
-            <!-- User access links -->
-            <div class="col-12 col-lg-4 my-auto">
-                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                    <li class="list-inline-item dropdown">
-                        <a href="" class="text-black nav-link" id="user-option" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">My Account</p>
+                <!-- Search products -->
+                <div class="col-12 col-lg-4 my-auto">
+                    <form action="{% url 'products' %}" method="GET">
+                        <div class="input-group w-100">
+                            <input type="text" class="form-control border border-black rounded-lg" name="query"
+                                placeholder="Search our store">
+                            <div class="input-group-append">
+                                <button type="submit" class="form-control btn btn-black border border-black rounded-lg">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </button>
                             </div>
-                        </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                            {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
-                                    <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
-                                {% endif %}
-                                <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                            {% else %}
-                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                            {% endif %}
                         </div>
-                    </li>
-                    <!-- end user access links -->
+                    </form>
+                </div>
+                <!-- end search -->
 
-                    <!-- Shopping bag -->
-                    <li class="list-inline-item">
-                        <a href="{% url 'view_bag' %}"
-                            class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
-                            <div class="text-center">
-                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                <p class="my-0">
-                                    {% if grand_total %}
-                                        £{{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                        £0.00
+                <!-- User access links -->
+                <div class="col-12 col-lg-4 my-auto">
+                    <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                        <li class="list-inline-item dropdown">
+                            <a href="" class="text-black nav-link" id="user-option" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <div class="text-center">
+                                    <div><i class="fas fa-user fa-lg"></i></div>
+                                    <p class="my-0">My Account</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
+                                        <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
                                     {% endif %}
-                                </p>
+                                        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                                    {% else %}
+                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                                {% endif %}
                             </div>
-                        </a>
-                    </li>
-                    <!-- end shopping bag -->
-                </ul>
+                        </li>
+                        <!-- end user access links -->
+
+                        <!-- Shopping bag -->
+                        <li class="list-inline-item">
+                            <a href="{% url 'view_bag' %}"
+                                class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
+                                <div class="text-center">
+                                    <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                    <p class="my-0">
+                                        {% if grand_total %}
+                                            £{{ grand_total|floatformat:2 }}
+                                        {% else %}
+                                            £0.00
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- end shopping bag -->
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="row bg-white">
-            <!-- navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
-                <!-- menu button for small screens -->
-                <button class="navbar-toggle d-md-flex d-lg-none" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!-- end button -->
+            <div class="row bg-white">
+                <!-- navbar -->
+                <nav class="navbar navbar-expand-lg navbar-light w-100">
+                    <!-- menu button for small screens -->
+                    <button class="navbar-toggle d-md-flex d-lg-none" type="button" data-toggle="collapse"
+                        data-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- end button -->
 
-                <!-- include the main nav buttons -->
-                {% include 'includes/mobile-top-header.html' %}
-                {% include 'includes/main-nav.html' %}
-            </nav>
-            <!-- end navbar -->
-        </div>
-    </header>
-    <!-- End header -->
+                    <!-- include the main nav buttons -->
+                    {% include 'includes/mobile-top-header.html' %}
+                    {% include 'includes/main-nav.html' %}
+                </nav>
+                <!-- end navbar -->
+            </div>
+        </header>
+        <!-- End header -->
 
-    <!-- from code institute -->
-    <!-- Display toast messages -->
-    {% if messages %}
+        <!-- from code institute -->
+        <!-- Display toast messages -->
+        {% if messages %}
         <div class="message-container">
             {% for message in messages %}
                 {% with message.level as level %}
-                    {% if level == 40 %}
+                {% if level == 40 %}
                     <!-- error toast message -->
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
                     <!-- warning toast message -->
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        <!-- success toast message -->
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        <!-- info toast message -->
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    <!-- success toast message -->
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    <!-- info toast message -->
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
                 {% endwith %}
             {% endfor %}
         </div>
-    {% endif %}
+        {% endif %}
 
-    <!-- Extra content in the header but under it -->
-    {% block page_header %}
-    {% endblock %}
+        <!-- Extra content in the header but under it -->
+        {% block page_header %}
+        {% endblock %}
 
-    
-
-    <!-- Main content block -->
-    {% block content %}
-    {% endblock %}
-
+        <!-- Main content block -->
+        {% block content %}
+        {% endblock %
     </div>
-
-
     <hr>
-     <!-- Footer for all pages -->
+    <!-- Footer for all pages -->
     <footer class="page-footer footer">
         <div class="container">
             <div class="row">
@@ -205,16 +203,16 @@
                 </div>
                 <div class="col-12 col-md-4 offset-md-4">
                     <h5 class="black-text d-flex justify-content-center">Get in touch!</h5>
-                    <a href="{% url 'contact' %}" aria-label="Get in touch form. 
-                        Opens a new page containing the form" class="text-black d-flex justify-content-center">
-                        stuffexpress@email.com</a>
                     <div id="social" class=" d-flex justify-content-center">
-                        <a href="{% url 'contact' %}" aria-label="Get in touch form. Opens a new page containing the form">
+                        <a href="{% url 'contact' %}"
+                            aria-label="Get in touch form. Opens a new page containing the form">
                             <i class="fas fa-envelope"></i></a>
                         <a class="" href="https://www.facebook.com" target="_blank" rel="noopener"
-                            aria-label="Find us on Facebook (link opens in a new tab)"><i class="fab fa-facebook"></i></a>
+                            aria-label="Find us on Facebook (link opens in a new tab)"><i
+                                class="fab fa-facebook"></i></a>
                         <a class="" href="https://www.instagram.com" target="_blank" rel="noopener"
-                            aria-label="Find us on Instagram (link opens in a new tab)"><i class="fab fa-instagram"></i></a>
+                            aria-label="Find us on Instagram (link opens in a new tab)"><i
+                                class="fab fa-instagram"></i></a>
                         <a class="" href="https://www.twitter.com" target="_blank" rel="noopener"
                             aria-label="Find us on Twiter (link opens in a new tab)"><i class="fab fa-twitter"></i></a>
                         <a class="" href="https://www.youtube.com" target="_blank" rel="noopener"

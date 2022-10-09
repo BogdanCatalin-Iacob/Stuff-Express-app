@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block page_header %}
-<!-- Top container under base.html header to push down the body-->
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
+    <!-- Top container under base.html header to push down the body-->
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
@@ -56,8 +56,7 @@
                                 <tr>
                                     <!-- order number -->
                                     <td>
-                                        <a href="{% url 'order_history' order.order_number%}"
-                                            title="{{ order.order_number }}">
+                                        <a href="{% url 'order_history' order.order_number%}" title="{{ order.order_number }}">
                                             {{ order.order_number|truncatechars:6 }}
                                         </a>
                                     </td>
@@ -87,8 +86,6 @@
                 </div>
             </div>
         </div>
-
-        {{ profile }}
     </div>
 {% endblock %}
 
