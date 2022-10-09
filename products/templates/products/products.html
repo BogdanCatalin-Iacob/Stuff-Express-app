@@ -22,16 +22,16 @@
                 {% if current_categories %}
                     {% for category in current_categories %}
                         <a class="text-decoration-none" href="{% url 'products' %}?category={{ category.name }}">
-                            <span class="badge badge-white text-black">
+                            <div class="badge badge-white text-black">
                                 <div class="h4 logo-font">{{ category.friendly_name }}</div>
-                            </span>
+                            </div>
                         </a>
                     {% endfor %}
                 {% else %}
                     <a class="text-decoration-none" href="{% url 'products' %}">
-                        <span class="badge badge-white text-black">
-                            <h4 class="logo-font">All Products</h4>
-                        </span>
+                        <div class="badge badge-white text-black">
+                            <div class="h4 logo-font">All Products</div>
+                        </div>
                     </a>
                 {% endif %}
                 <hr class="w-50 mb-1">
