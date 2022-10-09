@@ -135,15 +135,6 @@
                                             {% endif %}
                                             <!-- end tag -->
 
-                                            <!-- product rating on the card -->
-                                            {% if product.rating %}
-                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
-                                                    5</small>
-                                            {% else %}
-                                                <small class="text-muted">No Rating</small>
-                                            {% endif %}
-                                            <!-- end rating -->
-
                                             <!-- edit / delete buttons -->
                                             {% if request.user.is_superuser %}
                                                 <div class="mt-1 mb-0 ">
