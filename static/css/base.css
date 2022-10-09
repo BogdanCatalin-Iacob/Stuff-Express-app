@@ -10,6 +10,13 @@ body {
     display: flex;
     flex-direction: column;
 }
+.text-primary {
+    color: #0033B3!important;
+}
+
+.text-danger {
+    color: #bb3533!important;
+}
 
 .content {
     flex: 1 0 auto;

@@ -47,7 +47,7 @@
                     {% if products|length > 0 %}
                         <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
                             <div class="sort-select-wrapper w-50">
-                                <select id="sort-selector"
+                                <select id="sort-selector" aria-label="sort by selector"
                                     class="custom-select custom-select-sm rounded-lg border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...
                                     </option>
@@ -147,12 +147,13 @@
 
                                             <!-- edit / delete buttons -->
                                             {% if request.user.is_superuser %}
-                                            <p class="mt-1 mb-0">
-                                                <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> |
+                                            <p class="mt-1 mb-0 ">
+                                                <div class="ml-3">
+                                                    <a href="{% url 'edit_product' product.id %}"
+                                                    class="text-primary font-weight-bold">Edit</a> |
                                                     <a href="{% url 'delete_product' product.id %}"
-                                                        class="text-danger">Delete</a>
-                                                </small>
+                                                        class="font-weight-bold text-danger">Delete</a>
+                                                </div>
                                             </p>
                                             {% endif %}
                                         </div>
