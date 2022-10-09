@@ -81,9 +81,10 @@
                     <form action="{% url 'products' %}" method="GET">
                         <div class="input-group w-100">
                             <input type="text" class="form-control border border-black rounded-lg" name="query"
-                                placeholder="Search our store">
+                                placeholder="Search our store" aria-label="search box">
                             <div class="input-group-append">
-                                <button type="submit" class="form-control btn btn-black border border-black rounded-lg">
+                                <button type="submit" class="form-control btn btn-black border border-black rounded-lg"
+                                    aria-label="search button">
                                     <span class="icon">
                                         <i class="fas fa-search"></i>
                                     </span>
@@ -105,7 +106,7 @@
                                     <p class="my-0">My Account</p>
                                 </div>
                             </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            <div class="dropdown-menu border-0 text-black" aria-labelledby="user-options">
                                 {% if request.user.is_authenticated %}
                                     {% if request.user.is_superuser %}
                                         <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
@@ -125,8 +126,8 @@
                             <a href="{% url 'view_bag' %}"
                                 class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
                                 <div class="text-center">
-                                    <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                    <p class="my-0">
+                                    <div><i class="fas fa-shopping-bag fa-lg text-black"></i></div>
+                                    <p class="my-0 text-black">
                                         {% if grand_total %}
                                             £{{ grand_total|floatformat:2 }}
                                         {% else %}
