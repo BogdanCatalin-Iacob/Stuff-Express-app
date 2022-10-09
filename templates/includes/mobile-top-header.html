@@ -2,7 +2,7 @@
 <!-- button to open the search bar -->
 <ul>
     <li class="list-inline-item">
-        <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown"
+        <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" aria-label="search " data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
                 <div><i class="fas fa-search fa-lg"></i></div>
@@ -10,14 +10,14 @@
             </div>
         </a>
         <!-- search dropdown box -->
-        <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
+        <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-label="mobile-search">
             <form class="form" method="GET" action="{% url 'products' %}">
                 <div class="input-group w-100">
                     <input class="form-control border border-black rounded-0" type="text" name="query"
-                        placeholder="Search our site">
+                        placeholder="Search our site" aria-label="search input box">
                     <div class="input-group-append">
                         <button class="form-control form-control btn btn-black border border-black rounded-0"
-                            type="submit">
+                            type="submit" aria-label="search button">
                             <span class="icon">
                                 <i class="fas fa-search"></i>
                             </span>
@@ -33,7 +33,7 @@
     <!-- from codeinstitute -->
     <!-- button to open my account dropdown menu -->
     <li class="list-inline-item dropdown">
-        <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown"
+        <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" aria-label="user options" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
                 <div><i class="fas fa-user fa-lg"></i></div>
