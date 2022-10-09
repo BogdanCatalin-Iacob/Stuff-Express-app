@@ -318,12 +318,21 @@ footer i:hover {
 /* from codeinstitute */
 /* pad the top when navbar is collapsed on mobile */
 @media (max-width: 991px){
+
+    body {
+        background: url('/media/mobile-image.jpg') no-repeat center center fixed;
+    }
+
+    .transparent {
+        background-color: rgb(255, 255, 255, .7);
+    }
+
     .header-container {
         padding-top: 116px;
     }
 
-    body {
-        height: calc(100vh - 116px);
+    .shop-now-button {
+        min-width: 200px;
     }
 
     #social i {
