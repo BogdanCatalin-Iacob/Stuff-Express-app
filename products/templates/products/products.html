@@ -23,7 +23,7 @@
                     {% for category in current_categories %}
                         <a class="text-decoration-none" href="{% url 'products' %}?category={{ category.name }}">
                             <span class="badge badge-white text-black">
-                                <h4 class="logo-font">{{ category.friendly_name }}</h4>
+                                <div class="h4 logo-font">{{ category.friendly_name }}</div>
                             </span>
                         </a>
                     {% endfor %}
@@ -147,14 +147,14 @@
 
                                             <!-- edit / delete buttons -->
                                             {% if request.user.is_superuser %}
-                                            <p class="mt-1 mb-0 ">
-                                                <div class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}"
-                                                    class="text-primary font-weight-bold">Edit</a> |
-                                                    <a href="{% url 'delete_product' product.id %}"
-                                                        class="font-weight-bold text-danger">Delete</a>
+                                                <div class="mt-1 mb-0 ">
+                                                    <div class="ml-3">
+                                                        <a href="{% url 'edit_product' product.id %}"
+                                                        class="text-primary font-weight-bold">Edit</a> |
+                                                        <a href="{% url 'delete_product' product.id %}"
+                                                            class="font-weight-bold text-danger">Delete</a>
+                                                    </div>
                                                 </div>
-                                            </p>
                                             {% endif %}
                                         </div>
                                     </div>
