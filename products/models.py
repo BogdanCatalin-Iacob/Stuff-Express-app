@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from profiles.models import UserProfile
 
@@ -22,12 +23,30 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    created_by = models.CharField(
+        max_length=254, null=True, blank=True, editable=False)
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     brand = models.CharField(max_length=254, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
+    size_xs = models.PositiveIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        null=False, blank=False, default=0)
+    size_s = models.PositiveIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        null=False, blank=False, default=0)
+    size_m = models.PositiveIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        null=False, blank=False, default=0)
+    size_l = models.PositiveIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        null=False, blank=False, default=0)
+    size_xl = models.PositiveIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        null=False, blank=False, default=0)
+
     sale_price = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True)
     market_price = models.DecimalField(max_digits=10, decimal_places=2)
