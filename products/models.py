@@ -23,8 +23,10 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    created_by = models.CharField(
-        max_length=254, null=True, blank=True, editable=False)
+    created_by = models.ForeignKey(
+        UserProfile,
+        on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='created_by')
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
