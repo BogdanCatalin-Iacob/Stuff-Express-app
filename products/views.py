@@ -94,14 +94,14 @@ def product_detail(request, product_id):
 @login_required
 def add_product(request):
     """ Add a product to the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, section for store owners only')
-        return redirect(reverse('home'))
+    user = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()
+            product = form.save(commit=False)
+            product.created_by = user
+            product.save()
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
