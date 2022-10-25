@@ -136,7 +136,7 @@
                                             <!-- end tag -->
 
                                             <!-- edit / delete buttons -->
-                                            {% if request.user.is_superuser %}
+                                            {% if request.user.is_superuser or request.user == product.created_by.user %}
                                                 <div class="mt-1 mb-0 ">
                                                     <div class="ml-3">
                                                         <a href="{% url 'edit_product' product.id %}"
