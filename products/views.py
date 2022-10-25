@@ -156,11 +156,12 @@ def delete_product(request, product_id):
     '''
     Delete a product from db
     '''
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, section for store owners only')
-        return redirect(reverse('home'))
-
     product = get_object_or_404(Product, pk=product_id)
+    if not request.user.is_superuser:
+        if request.user != product.created_by.user:
+            messages.error(request, 'Sorry, section for products owners only')
+            return redirect(reverse('home'))
+
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
