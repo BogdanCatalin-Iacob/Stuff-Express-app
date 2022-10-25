@@ -123,11 +123,12 @@ def edit_product(request, product_id):
     '''
     Edit an existing product
     '''
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, section for store owners only')
-        return redirect(reverse('home'))
-
     product = get_object_or_404(Product, pk=product_id)
+    # check if the user is superuser or owner
+    if not request.user.is_superuser:
+        if request.user != product.created_by.user:
+            messages.error(request, 'Sorry, section for products owners only')
+            return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
