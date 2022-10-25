@@ -9,7 +9,8 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'market_price',
         'rating',
-        'image'
+        'image',
+        'created_by',
     )
 
     ordering = ('category',)
